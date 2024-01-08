@@ -65,12 +65,13 @@
     </div>
 
     <script>
+        // Function to format numbers with leading zero
+        function formatNumber(num) {
+            return num < 10 ? '0' + num : num;
+        }
+
         // Countdown target date and time
         var countDownDate = new Date("2024-10-18T10:00:00+11:00").getTime();
-
-        function formatNumber(num) {
-        return num < 10 ? '0' + num : num;
-    }
 
         var x = setInterval(function() {
             var now = new Date().getTime();
@@ -82,11 +83,11 @@
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Display the result
-            document.getElementById("days").innerHTML = days;
-            document.getElementById("hours").innerHTML = hours;
-            document.getElementById("minutes").innerHTML = minutes;
-            document.getElementById("seconds").innerHTML = seconds;
+            // Display the result with leading zeros
+            document.getElementById("days").innerHTML = formatNumber(days);
+            document.getElementById("hours").innerHTML = formatNumber(hours);
+            document.getElementById("minutes").innerHTML = formatNumber(minutes);
+            document.getElementById("seconds").innerHTML = formatNumber(seconds);
 
             // If the countdown is finished
             if (distance < 0) {
