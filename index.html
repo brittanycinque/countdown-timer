@@ -68,6 +68,10 @@
         // Countdown target date and time
         var countDownDate = new Date("2024-10-18T10:00:00+11:00").getTime();
 
+        function formatNumber(num) {
+        return num < 10 ? '0' + num : num;
+    }
+
         var x = setInterval(function() {
             var now = new Date().getTime();
             var distance = countDownDate - now;
