@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Countdown Timer</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Hide scrollbars */
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            background-color: rgba(0,0,0,0); /* Transparent background */
+        }
+        .countdown {
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .time-unit {
+            margin: 0 15px; /* Increased spacing */
+            text-align: center;
+        }
+        .number {
+            font-size: 36px; /* Larger font size for numbers */
+            font-weight: bold; /* Bold for numbers */
+            display: block;
+            margin-bottom: 1px; /* Spacing between number and text */
+            letter-spacing: 4px; /* Spacing between characters in numbers */
+        }
+        .red {
+            color: #C5254A;
+        }
+        .white {
+            color: #EBE9DF; /* Slightly darker shade of grey */
+        }
+        .label {
+            color: black;
+            font-size: 11px;
+            font-weight: Light; /* Decrease weight of the label text */
+            letter-spacing: 4px; /* Spacing between characters in labels */
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown">
+        <div class="time-unit">
+            <span id="days" class="number red"></span>
+            <span class="label">DAYS</span>
+        </div>
+        <div class="time-unit">
+            <span id="hours" class="number white"></span>
+            <span class="label">HOURS</span>
+        </div>
+        <div class="time-unit">
+            <span id="minutes" class="number red"></span>
+            <span class="label">MINUTES</span>
+        </div>
+        <div class="time-unit">
+            <span id="seconds" class="number white"></span>
+            <span class="label">SECONDS</span>
+        </div>
+    </div>
+
+    <script>
+        // Function to format numbers with leading zero
+        function formatNumber(num) {
+            return num < 10 ? '0' + num : num;
+        }
+
+        // Countdown target date and time
+        var countDownDate = new Date("2024-10-18T10:00:00+11:00").getTime();
+
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+            // Calculate days, hours, minutes, and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result with leading zeros
+            document.getElementById("days").innerHTML = formatNumber(days);
+            document.getElementById("hours").innerHTML = formatNumber(hours);
+            document.getElementById("minutes").innerHTML = formatNumber(minutes);
+            document.getElementById("seconds").innerHTML = formatNumber(seconds);
+
+            // If the countdown is finished
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "On Holiday!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
